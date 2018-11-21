@@ -9,6 +9,7 @@ SUBJECT_FIELD = By.CSS_SELECTOR, "input[name=subjectbox]"
 MESSAGE_FIELD = By.CSS_SELECTOR, ".Am.Al.editable"
 SEND_BUTTON = By.CSS_SELECTOR, ".aoO"
 NOTIFICATION = By.CSS_SELECTOR, ".aT"
+READ_BTN = By.CSS_SELECTOR, "div[gh='mtb'] .bzn .G-tF div:nth-of-type(3) div.m9"
 
 ACCOUNT_MENU_BTN = By.CSS_SELECTOR, ".gb_ab"
 LOGOUT_BTN = By.CSS_SELECTOR, "#gb_71"
@@ -64,7 +65,6 @@ def reply(driver):
 
 def check_message_as_read(driver, message_subject):
     CHECKBOX = By.XPATH, f"//span[contains(text(), '{message_subject}')]/ancestor::div[@role='main']//td[contains(@class, 'oZ-x3')]"
-    READ_BTN = By.CSS_SELECTOR, "div[gh='mtb'] .bzn .G-tF div:nth-of-type(3) div.m9"
     WebDriverWait(driver, 60).until(EC.visibility_of_element_located(CHECKBOX)).click()
     WebDriverWait(driver, 60).until(EC.element_to_be_clickable(READ_BTN)).click()
 

@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from data import recovery_page_url
 
 EMAIL_FIELD = By.CSS_SELECTOR, "#identifierId"
@@ -16,6 +17,7 @@ def enter_email(driver, email):
 
 def enter_password(driver, password):
     driver.find_element(*PASSWORD_FIELD).send_keys(password)
-    driver.find_element(*PASSWORD_NEXT_BTN).click()
+    WebDriverWait(driver, 60).until((EC.staleness_of(driver.find_element(By.CSS_SELECTOR, ".ANuIbb"))))
+    WebDriverWait(driver, 60).until(EC.element_to_be_clickable(PASSWORD_NEXT_BTN)).click()
     if recovery_page_url in driver.current_url:
         driver.find_element(*READY_BTN).click()
