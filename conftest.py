@@ -9,7 +9,7 @@ def driver_init(request):
     filename = os.path.join(dir, 'chromedriver.exe')
     web_driver = webdriver.Chrome(filename)
     web_driver.get('http://google.ru')
-    web_driver.maximize_window()
+    web_driver.set_window_size(1920, 1080)
     web_driver.implicitly_wait(30)
     request.cls.driver = web_driver
     yield
